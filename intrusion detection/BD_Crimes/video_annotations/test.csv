@@ -1,0 +1,5 @@
+video,url,youtube_id,channel,upload_date,yt_start_sec,yt_end_sec,event_start_sec,event_end_sec,fps,footage_type,permission_status,downloaded_date,notes
+Snatching001_x264.mp4,https://www.youtube.com/watch?v=abc123,abc123,Somoy TV,2025-11-12,720,780,25,33,25,cctv,requested,2026-10-04,?????????? ???? ????? ???
+Snatching002_x264.mp4,https://www.youtube.com/watch?v=abc123,abc123,Somoy TV,2025-11-12,1280,1319,20,26,25,phone,requested,2026-10-04,??????? ??? ???
+Fighting001_x264.mp4,https://www.youtube.com/watch?v=abc123,abc123,Somoy TV,2025-11-12,1550,1600,20,32,25,cctv,requested,2026-10-04,?????? ????????
+Normal_Videos_train001_x264.mp4,https://www.youtube.com/watch?v=abc123,abc123,Somoy TV,2025-11-12,180,240,,,25,cctv,requested,2026-10-04,??????? ????????? ?????
