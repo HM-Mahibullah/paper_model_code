@@ -1,0 +1,69 @@
+downolad this papers
+
+https://www.sciencedirect.com/science/article/abs/pii/S0168169926009427?via%3Dihub
+https://www.sciencedirect.com/science/article/abs/pii/S0923596526002006?via%3Dihub
+
+
+
+Notebook-এর cell গুলো
+Cell 1: শিরোনাম
+
+কী বানানো হচ্ছে: YOLO26n-এর backbone আর neck অপরিবর্তিত, head-এ Paper 7-এর ASFF।
+Kaggle-এর setting: GPU T4, Internet On।
+Cell 2: Setup
+
+ultralytics 8.4.137 আর roboflow install।
+GPU আছে কি না আর library-র version দেখাবে।
+Cell 3: Dataset
+
+Kaggle Secrets থেকে Roboflow API key পড়বে।
+Dataset নামিয়ে train, valid আর test-এর path ঠিক করবে।
+প্রতিটা split-এ কয়টা ছবি আর কয়টা class আছে দেখাবে।
+Cell 4: Paper 7 head-এর ব্যাখ্যা
+
+ASFF কী করে।
+কোথায় বসে: layer 16, 19, 22-এর পরে, Detect-এর আগে।
+কেন BiFPN আর P2 নেওয়া হয়নি।
+Cell 5: asff_head.py লেখা
+
+ASFF module: তিনটা scale-এর feature একই আকারে আনে, প্রতিটা pixel-এ softmax weight দেয়, weight দিয়ে যোগ করে, শেষে 3×3 conv।
+ASFFDetect: YOLO26 Detect-এর subclass। প্রথমে ASFF, তারপর সাধারণ Detect।
+add_asff: Model বানানোর পরে layer 23-কে ASFFDetect-এ বদলায়। P3–P5, বা শুধু P4–P5 বেছে নেওয়া যায়।
+ASFFTrainer: Training শুরুর সময় ASFF বসায়, তারপর yolo26n.pt-এর pretrained weight লোড করে।
+Cell 6: Training
+
+Setting: 100 epoch, batch 16, imgsz 640, MuSGD, lr0 0.01, seed 0, patience 30, সব model-এ একই।
+Baseline আর ASFF model train হবে।
+Cell 7: Test-এ মূল্যায়ন
+
+প্রতিটা model-এর best.pt test set-এ চালাবে।
+Precision, Recall, F1-score, mAP@50, Params (M) আর GFLOPs স্ক্রিনে দেখাবে।
+Cell 8: Edge device-এর প্যাকেজ
+
+প্রতিটা model imgsz 640-এ NCNN-এ export করবে, Pi 5-এর জন্য।
+.pt ফাইল কপি করবে, Jetson-এর জন্য।
+Test set থেকে ৫০টা আসল ছবি একটা আলাদা folder-এ রাখবে, FPS মাপার জন্য।
+asff_head.py, pi5_bench.py আর jetson_bench.py একসাথে রাখবে।
+সব মিলিয়ে একটা zip বানাবে, যা Output tab থেকে নামাবেন।
+Cell 9: চূড়ান্ত Table 2
+
+আট কলামের পূর্ণ table স্ক্রিনে দেখাবে।
+উপরে Pi 5 আর Jetson-এর FPS টাইপ করার জায়গা থাকবে। টাইপ না করলে ওই দুটো কলামে -- দেখাবে।
+দুটো benchmark script
+pi5_bench.py (Raspberry Pi 5)
+
+Folder-এর সব NCNN model নিজে খুঁজে নেবে।
+Zip-এর ৫০টা আসল test ছবি পালা করে ব্যবহার করবে।
+প্রতিটা model-এ 100 বার warm-up, তারপর 1000 বার চালাবে। Batch 1, imgsz 640, preprocessing আর postprocessing সহ।
+প্রতিটা model-এর median ms আর FPS terminal-এ দেখাবে।
+jetson_bench.py (Jetson)
+
+শুরুতে পরীক্ষা করবে GPU পাওয়া যাচ্ছে কি না। না পেলে সতর্কবার্তা দেখিয়ে থেমে যাবে।
+Folder-এর সব .pt model GPU-তে FP16-এ চালাবে।
+একই ৫০টা আসল test ছবি পালা করে ব্যবহার করবে, একই নিয়মে: 100 বার warm-up, 1000 বার।
+প্রতিটা model-এর median ms আর FPS terminal-এ দেখাবে।
+Data কোথা থেকে আসছে
+Training, evaluation আর FPS: সবই আপনার আসল dataset থেকে।
+শুধু GFLOPs: একটা ফাঁকা 640×640 ছবি দিয়ে মাপা হয়। GFLOPs ছবির বিষয়বস্তুর ওপর নির্ভর করে না, এটাই এটা মাপার নিয়ম।
+আপনার কম্পিউটারে কিছু চলবে না। কোড বানানোর পর আমি শুধু syntax পরীক্ষা করব।
+কোড চাইলে বলবেন, এই ক্রমেই বানিয়ে দেব।
