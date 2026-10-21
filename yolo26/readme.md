@@ -48,3 +48,7 @@ ls
 
 echo performance | sudo tee /sys/devices/system/cpu/cpu*/scaling_governor
 python pi5_bench.py
+
+
+## how to github large file 
+
