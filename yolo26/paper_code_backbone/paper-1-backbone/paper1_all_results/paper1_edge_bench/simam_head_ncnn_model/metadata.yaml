@@ -1,0 +1,46 @@
+description: Ultralytics YOLO26n model trained on /kaggle/working/digitalaccess/data.yaml
+author: Ultralytics
+date: '2026-10-19T18:47:21.342331+00:00'
+version: 8.4.137
+license: AGPL-3.0 License (https://ultralytics.com/license)
+docs: https://docs.ultralytics.com
+stride: 32
+task: detect
+head: SimAMDetect
+batch: 1
+imgsz:
+- 640
+- 640
+names:
+  0: Amit
+  1: Apurbo
+  2: Bashar
+  3: Boloram
+  4: Dipjoy
+  5: Fahim
+  6: Jihad
+  7: Jobayer
+  8: Kaiyum
+  9: MH_Nazmul
+  10: Mahibullah
+  11: Mamun
+  12: Meheraj
+  13: Milon
+  14: Nazrul
+  15: Noyim
+  16: Ontor
+  17: Prosenjit
+  18: Rahat
+  19: Safayet
+  20: Sakib
+  21: Senarul
+  22: Sharafat
+  23: Sifat
+  24: Tanjil
+  25: Tanmoy
+  26: Tanvir
+args:
+  batch: 1
+  quantize: null
+channels: 3
+end2end: false
