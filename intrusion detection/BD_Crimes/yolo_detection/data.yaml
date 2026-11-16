@@ -1,6 +1,0 @@
-path: .
-train: train/images
-val: valid/images
-test: test/images
-nc: 6
-names: [person, knife, gun, stick, fire, smoke]

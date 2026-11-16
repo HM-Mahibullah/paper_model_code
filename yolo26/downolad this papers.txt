@@ -5,6 +5,36 @@ https://www.sciencedirect.com/science/article/abs/pii/S0923596526002006?via%3Dih
 
 
 
+
+
+Title: LoopFace-Auth: Depth-Adjustable Face Detection and Open-Set Authorization with an IOTA-Based Trust Layer on Raspberry Pi 5
+
+Abstract:
+Camera-based access control on low-cost edge devices faces three challenges: lightweight face detectors fix their accuracy–latency trade-off at training time, closed-set face classifiers assign strangers to the most similar enrolled person instead of rejecting them, and the authorized-person list and access logs stored on the device can be altered without detection. In this paper, we present LoopFace-Auth, an end-to-end access-control system that runs entirely on a Raspberry Pi 5. Its LoopFace detector extends RetinaFace with a fixed Haar wavelet branch that preserves small-face detail and a weight-tied refinement block applied L times, adding fewer than 50k parameters; because L is randomized during training, one set of weights runs at any depth at test time. Each detected face is aligned with five predicted landmarks, embedded by a pretrained MobileFaceNet and matched against an enrolled gallery, and a multi-frame vote decides between authorized and unauthorized. The IOTA Rebased ledger, kept outside the door-actuation path, stores an administrator-signed gallery hash that the device verifies before use and periodically anchors Merkle roots of signed, hash-chained access logs. On WIDER FACE, LoopFace achieves [X]/[X]/[X] AP (Easy/Medium/Hard) at [X]–[X] ms on the Pi 5. On identity-disjoint folds, the system reaches an equal error rate of [X]%, whereas a closed-set YOLO26n baseline accepts [X]% of strangers; it runs at [X] FPS, detects all [X] simulated tampering attempts, and ledger anchoring adds no measurable delay to door opening. These results show that secure, auditable and privacy-preserving access control is practical on inexpensive edge hardware, as biometric data never leaves the device and only hashes reach the ledger.
+
+Keywords: face detection; open-set face recognition; access control; IOTA; edge AI; Raspberry Pi 5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Notebook-এর cell গুলো
 Cell 1: শিরোনাম
 
